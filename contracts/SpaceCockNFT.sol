@@ -18,9 +18,9 @@ contract SpaceCockNFT is ERC721URIStorage {
 	string lineBreakStart = "<tspan x='0' dy='1.2em'>"; 
 	string lineBreakEnd= "</tspan>"; 
 	string question = "What is the answer to life, the universe, and everything?";
-	string[] firstWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD"];
-	string[] secondWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD"];
-	string[] thirdWords = ["YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD", "YOUR_WORD"];	
+	string[] firstWords = ["Failure, ", "Freedom, ", "Belief, ", "Ghost, ", "Holiday, ", "Patience, ", "Calm, ", "Angel, ", "Faith, ", "Peace, "];
+	string[] secondWords = ["Explosion, and ", "Fish, and ", "Computer, and ", "Nuts, and ", "Planet, and ", "Cemetery, and ", "Yacht, and ", "Lobster, and ", "Train, and ", "Dance, and"];
+	string[] thirdWords = ["Gun", "Cellar", "Cow", "Fireplace", "Motorbike", "Spider", "Car", "Pipe", "Glasses", "Brrom"];	
 
 	// We need to pass the name of our NFTs token and its symbol.
 	constructor() ERC721 ("SpaceCockNFT", "SPACE") {
