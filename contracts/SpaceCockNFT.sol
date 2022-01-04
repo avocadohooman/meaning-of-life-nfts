@@ -14,10 +14,12 @@ contract SpaceCockNFT is ERC721URIStorage {
 	using Counters for Counters.Counter;
 	Counters.Counter private _tokenIds;
 
-	string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
-	string lineBreakStart = "<tspan x='0' dy='1.2em'>"; 
+	string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 20px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='30%' class='base' dominant-baseline='middle' text-anchor='middle'>";
+	string lineBreakStart = "<tspan x='50%' dy='1em'>"; 
 	string lineBreakEnd= "</tspan>"; 
-	string question = "What is the answer to life, the universe, and everything?";
+	string lineBreakStartSpace = "<tspan x='50%' dy='1.5em'>"; 
+	string questionPartOne = "What is the answer to life,";
+	string questionPartTwo = "the universe, and everything?";
 	string[] firstWords = ["Failure, ", "Freedom, ", "Belief, ", "Ghost, ", "Holiday, ", "Patience, ", "Calm, ", "Angel, ", "Faith, ", "Peace, "];
 	string[] secondWords = ["Explosion, and ", "Fish, and ", "Computer, and ", "Nuts, and ", "Planet, and ", "Cemetery, and ", "Yacht, and ", "Lobster, and ", "Train, and ", "Dance, and"];
 	string[] thirdWords = ["Gun", "Cellar", "Cow", "Fireplace", "Motorbike", "Spider", "Car", "Pipe", "Glasses", "Brrom"];	
@@ -92,7 +94,7 @@ contract SpaceCockNFT is ERC721URIStorage {
 		string memory thirdWord = pickRandomThirdWord(newItemId);
 
 		// I concatenate it all together, and then close the <text> and <svg> tags.
-		string memory finalSvg = string(abi.encodePacked(baseSvg,lineBreakStart,question,lineBreakEnd,firstWord,secondWord,thirdWord, "</text></svg>"));
+		string memory finalSvg = string(abi.encodePacked(baseSvg,lineBreakStart,questionPartOne, lineBreakEnd, lineBreakStart, questionPartTwo, lineBreakEnd,lineBreakStartSpace, firstWord,secondWord,thirdWord,lineBreakEnd, "</text></svg>"));
 
 		console.log("\n--------------------");
 		console.log(finalSvg);
