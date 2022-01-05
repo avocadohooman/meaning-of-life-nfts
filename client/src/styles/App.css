@@ -17,10 +17,20 @@
   padding-top: 30px;
 }
 
+.success-container {
+	padding: 60px;
+}
+
 .header {
   margin: 0;
   font-size: 50px;
   font-weight: bold;
+}
+
+.count {
+	margin: 20;
+	font-size: 42px;
+	font-weight: bold;
 }
 
 .sub-text {
@@ -35,7 +45,8 @@
   -webkit-text-fill-color: transparent;
 }
 
-.cta-button {
+.cta-button,
+.mint-button {
   height: 45px;
   border: 0;
   width: auto;
@@ -54,11 +65,31 @@
   animation: gradient-animation 4s ease infinite;
 }
 
-.mint-button {
-  background: -webkit-linear-gradient(left, #a200d6, #ff6fdf);
+.loading-button {
+	background: -webkit-linear-gradient(left, #67E8BA, #7CD8ED);
+	background-size: 200% 200%;
+	animation: gradient-animation 4s ease infinite;
+}
+
+.mint-button-animation {
+  background: -webkit-linear-gradient(left, #F492A7, #F3E862);
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
   margin-right: 15px;
+}
+
+.mint-success-button-animation {
+	background: -webkit-linear-gradient(left, #67E8BA, #67E8BA);
+	background-size: 200% 200%;
+	animation: gradient-animation 4s ease infinite;
+	margin-right: 15px;
+}
+
+.mint-close-button-animation {
+	background: -webkit-linear-gradient(left, #F492A7, #F492A7);
+	background-size: 200% 200%;
+	animation: gradient-animation 4s ease infinite;
+	margin-right: 15px;
 }
 
 .opensea-button {
