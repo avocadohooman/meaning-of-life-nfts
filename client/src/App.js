@@ -39,8 +39,8 @@ const App = () => {
 				const account = accounts[0];
 				console.log('found an authorized account: ', account);
 				setCurrentAccount(account);
-				await getNumberOfNFTsMinted();
-				await eventListener();
+				getNumberOfNFTsMinted();
+				eventListener();
 			} else {
 				console.log('no authorized account found');
 			}
@@ -73,6 +73,8 @@ const App = () => {
 				const account = accounts[0];
 				console.log('found an authorized account: ', account);
 				setCurrentAccount(account[0]);
+				getNumberOfNFTsMinted();
+				eventListener();
 			} else {
 				console.log('no authorized account found');
 			} 
@@ -96,7 +98,7 @@ const App = () => {
 
 				console.log("Going to pop wallet now to pay gas...")
 				// Mint an NFT :)
-				const nftTxn = await connectedContract.makeAnEpicNFT();
+				const nftTxn = await connectedContract.makeAnEpicNFT({gasLimit: 3000000});
 				console.log("Mining...please wait.")
 				await nftTxn.wait();
 				console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
@@ -107,7 +109,7 @@ const App = () => {
 		} catch (error) {
 			console.log(error);
 		}
-		setIsMinting(true);
+		setIsMinting(false);
 	}
 
 	/*
@@ -122,7 +124,7 @@ const App = () => {
 				const signer = provider.getSigner();
 				const connectedContract = new ethers.Contract(config.contractAddress, config.contractABI, signer);
 
-				let count = await connectedContract.getTotalMintedNFTs( {gasLimit: 300000});
+				let count = await connectedContract.getTotalMintedNFTs();
 				console.log('total amount of NFTs minted', count.toNumber());
 				setNumberOfNFTs(count.toNumber());
 			} else {
@@ -141,7 +143,7 @@ const App = () => {
 		}
 	}
 
-	const eventListener = async () => {
+	const eventListener = () => {
 		try {
 			const { ethereum } = window;
 			if (ethereum) {
@@ -149,7 +151,7 @@ const App = () => {
 				const signer = provider.getSigner();	
 				const connectedContract = new ethers.Contract(config.contractAddress, config.contractABI, signer);
 
-				connectedContract.on("NewEpicNFTMinted", nftMinted());
+				connectedContract.on("NewEpicNFTMinted", nftMinted);
 			}
 		} catch (error) {
 			console.log(error);
@@ -228,7 +230,7 @@ const App = () => {
 					renderMintLoadingContainer()
 				}
 
-				{currentAccount && successMessage && 
+				{currentAccount && successMessage && tokenId &&
 					<div>
 						{renderSuccessContainer()}
 						<div className="success-container sub-text">
@@ -238,7 +240,6 @@ const App = () => {
 						</div>
 						{renderCloseContainer()}
 					</div>
-					
 				}
 
 			</div>
