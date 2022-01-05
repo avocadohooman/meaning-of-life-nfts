@@ -23,7 +23,7 @@ contract SpaceCockNFT is ERC721URIStorage {
 	string lineBreakStartSpace = "<tspan x='50%' dy='2em'>"; 
 	string questionPartOne = "What is the answer to life,";
 	string questionPartTwo = "the universe, and everything?";
-	string[] firstWords = ["Failures, ", "Freedom, ", "Believes, ", "Ghosts, ", "Holidays, ", "Patience, ", "Calm, ", "Angels, ", "Faith, ", "Peace, "];
+	string[] firstWords = ["Failures, ", "Freedom, ", "Beliefes, ", "Ghosts, ", "Holidays, ", "Patience, ", "Calm, ", "Angels, ", "Faith, ", "Peace, "];
 	string[] secondWords = ["Explosions, and ", "Fish, and ", "Computers, and ", "Nuts, and ", "Planets, and ", "Cemeteries, and ", "Yacht, and ", "Lobsters, and ", "Trains, and ", "Dance, and "];
 	string[] thirdWords = ["Guns", "Cellars", "Cows", "Fireplaces", "Motorbikes", "Spiders", "Cars", "Pipes", "Glasses", "Avocados"];	
 	// Get fancy with it! Declare a bunch of colors.

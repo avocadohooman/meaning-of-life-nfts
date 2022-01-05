@@ -24,7 +24,8 @@ const App = () => {
 				return ;
 			}
 			console.log("We have the ehtereum object", ethereum);
-
+			const address = await ethereum.enable(); 
+			console.log('address', address);
 			const accounts = await ethereum.request({method: 'eth_accounts'});
 			const chainId = await ethereum.request({ method: 'eth_chainId' });
 			console.log("Connected to chain " + chainId);
@@ -39,8 +40,8 @@ const App = () => {
 				const account = accounts[0];
 				console.log('found an authorized account: ', account);
 				setCurrentAccount(account);
-				getNumberOfNFTsMinted();
 				eventListener();
+				getNumberOfNFTsMinted()
 			} else {
 				console.log('no authorized account found');
 			}
@@ -59,6 +60,8 @@ const App = () => {
 				window.alert("Make sure you have MetaMask!");
 				return ;
 			}
+			const address = await ethereum.enable(); 
+			console.log('address', address);
 			const accounts = await ethereum.request({method: 'eth_accounts'});
 			const chainId = await ethereum.request({ method: 'eth_chainId' });
 			console.log("Connected to chain " + chainId);
@@ -72,7 +75,7 @@ const App = () => {
 			if (accounts.length > 0) {
 				const account = accounts[0];
 				console.log('found an authorized account: ', account);
-				setCurrentAccount(account[0]);
+				setCurrentAccount(account);
 				getNumberOfNFTsMinted();
 				eventListener();
 			} else {
@@ -139,7 +142,6 @@ const App = () => {
 		if (from && tokenId) {
 			console.log(from, Number(tokenId))
 			setTokenId(Number(tokenId));
-			// alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${config.contractAddress}/${tokenId.toNumber()}`);	
 		}
 	}
 
@@ -206,6 +208,7 @@ const App = () => {
 
 	useEffect(() => {
 		checkIfWalletIsConnected();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -213,7 +216,9 @@ const App = () => {
 			<div className="container">
 			<div className="header-container">
 				<p className="header gradient-text">The Meaning of Life NFT Collection</p>
-				<p className="count gradient-text">{numberOfNFTs}/{TOTAL_MINT_COUNT} NFTs created</p>
+				{currentAccount && 
+					<p className="count gradient-text">{numberOfNFTs}/{TOTAL_MINT_COUNT} NFTs created</p>
+				}
 				{renderExploreContainer()}
 				<p className="sub-text">
 				Each unique. Each personal. <br/>Get your answer to life, <br/>the universe and everything else today.
@@ -236,7 +241,7 @@ const App = () => {
 						<div className="success-container sub-text">
 							{`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. 
 							It can take a max of 10 min to show up on OpenSea. Here's the link: `}
-							<a className="gradient-text" href={`https://testnets.opensea.io/assets/${config.contractAddress}/${tokenId}`}>Click here</a>
+							<a className="gradient-text" target="_blank" rel="noreferrer" href={`https://testnets.opensea.io/assets/${config.contractAddress}/${tokenId}`}>Click here</a>
 						</div>
 						{renderCloseContainer()}
 					</div>
