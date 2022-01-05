@@ -14,12 +14,17 @@ const main = async () => {
 	await nftContract.deployed();
 	console.log('NFT Contract deployed to: ', nftContract.address);
 
+	let nftCount;
+	nftCount = await nftContract.getTotalMintedNFTs();
+
 	// call the function
 	let txn = await nftContract.makeAnEpicNFT();
 	await txn.wait();
 
 	txn = await nftContract.makeAnEpicNFT();
 	await txn.wait();
+
+	nftCount = await nftContract.getTotalMintedNFTs();
 }
 
 
