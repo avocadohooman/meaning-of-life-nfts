@@ -27,6 +27,13 @@ cd client
 yarn install
 ```
 
+### Run local client
+
+```
+cd client
+yarn run start
+```
+
 ### Hardhat/Smart contract test
 
 `
